@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import json
+import settings
 
 
 class PolygonCreator:
@@ -35,7 +36,7 @@ class PolygonCreator:
 
     def run(self):
         """Запускает процесс создания полигона."""
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture(settings.camera_path)
 
         if not cap.isOpened():
             print("Error: Could not open camera.")
