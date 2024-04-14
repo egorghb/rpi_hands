@@ -1,0 +1,6 @@
+{
+  "show_fps": true,
+  "draw_hand_skeleton": false,
+  "draw_bounding_box": true,
+  "draw_danger_zone": true
+}
