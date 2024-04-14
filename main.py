@@ -2,6 +2,7 @@ from modules.hands_recognition import HandsDetector, HandsTracker
 import cv2
 import settings
 import json
+from datetime import datetime
 
 
 def load_coordinates(filename="data/danger_zone_coords.json"):
@@ -17,7 +18,7 @@ def load_coordinates(filename="data/danger_zone_coords.json"):
 
 
 def main():
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(settings.camera_path)
     if not cap.isOpened():
         print("Error: Could not open video capture")
         return
@@ -40,6 +41,7 @@ def main():
             for bbox in hands_tracker.get_bbox(image, hands):
                 if hands_tracker.is_intersect(bbox):
                     print("warning")
+                    cv2.imwrite(f'./logs/{datetime.now()}.jpeg', image)
                 if settings.draw_bounding_box:
                     hands_tracker.draw_bbox(image, bbox)
                 if settings.draw_hand_skeleton:
